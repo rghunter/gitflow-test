@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Setup Release
 
 # Controls when the workflow will run
 on:
@@ -17,5 +17,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+      - name: create pull request
+        run: gh pr create -B production -H ${GITHUB_REF} -f
