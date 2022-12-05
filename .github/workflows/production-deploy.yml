@@ -1,0 +1,23 @@
+name: Deploy Dev App
+
+on:
+  push:
+    branches:
+      - 'release-v*'
+
+
+jobs:
+  build-and-deploy-backend:
+    environment: dev
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: last-semvar-branch
+        uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
+        with:
+          regex-string: 'release-v' 
+      - name: output semvar
+        run: echo "Semvar is ${{ steps.last-semvar-branch.outputs.last-semver}}"
+
