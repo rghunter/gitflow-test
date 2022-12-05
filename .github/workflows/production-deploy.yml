@@ -12,10 +12,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: last-semvar-branch
+      - name: extract semvar 
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
           regex-string: 'release-' 
       - name: output semvar
-        run: echo "Semvar is ${{ steps.last-semvar-branch.outputs['last-semver']}}"
+        run: echo "Semvar is ${{ steps.extract_semvar.outputs}}"
 
