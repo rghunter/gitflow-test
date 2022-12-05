@@ -2,8 +2,6 @@ name: Deploy Dev App
 
 on:
   push:
-    branches:
-      - 'release-v*'
 
 
 jobs:
