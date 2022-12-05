@@ -18,7 +18,9 @@ jobs:
         name: Extract the Semvar from the Branch Name
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
-          regex-string: 'release-' 
+          regex-string: 'release-v'
+      - name: display semvar
+        run: echo ${{steps.extract-semvar.outputs.last-semver}}
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
