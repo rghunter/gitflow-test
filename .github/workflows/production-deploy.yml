@@ -17,7 +17,7 @@ jobs:
       - name: last-semvar-branch
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
-          regex-string: 'release-v' 
+          regex-string: 'release-' 
       - name: output semvar
         run: echo "Semvar is ${{ steps.last-semvar-branch.outputs.last-semver}}"
 
