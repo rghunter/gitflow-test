@@ -26,6 +26,6 @@ jobs:
         with:
           tag: ${{ steps.extract-semvar.outputs.last-semver }}
           name: Release ${{ steps.extract-semvar.outputs.last-semver }}
-          body: "test"
+          body: "${{ github.event.head_commit.message }}"
 
 
