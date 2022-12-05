@@ -19,13 +19,20 @@ jobs:
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
           regex-string: 'release-v'
+
       - name: display semvar
         run: echo ${{steps.extract-semvar.outputs.last-semver}}
+
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.extract-semvar.outputs.last-semver }}
-          name: Release ${{ steps.extract-semvar.outputs.last-semver }}
+          name: v${{ steps.extract-semvar.outputs.last-semver }}
           body: "${{ github.event.head_commit.message }}"
+
+      - name: Create PR to merge production back to main
+        run: gh pr create -B main -H production -t "Mergeback" -b "Automerge production to main"
+        env:
+          GH_TOKEN: ${{ github.token }}
 
 
