@@ -2,6 +2,8 @@ name: Deploy Dev App
 
 on:
   push:
+    branches:
+      - "production"
 
 
 jobs:
@@ -18,5 +20,12 @@ jobs:
         with:
           regex-string: 'release-' 
       - name: output semvar
-        run: echo "Semvar is ${{ steps.extract-semvar.outputs.last-semver }}"
+        run: echo "Semvar is ${{ 
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.extract-semvar.outputs.last-semver }}
+          name: Release ${{ steps.extract-semvar.outputs.last-semver }}
+          body: "test"
+
 
