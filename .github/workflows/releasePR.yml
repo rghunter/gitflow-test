@@ -17,7 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - id: extract-semvar
+        name: Extract the Semvar from the Branch Name
+        uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
+        with:
+          regex-string: 'release-v'
+
       - name: create pull request
-        run: gh pr create -B production -H ${GITHUB_REF} -f
+        run: gh pr create -B production -H ${GITHUB_REF} -t "Release ${{steps.extract-semvar.outputs.last-semver}}" -b "# Release Notes:"
         env:
           GH_TOKEN: ${{ github.token }}
