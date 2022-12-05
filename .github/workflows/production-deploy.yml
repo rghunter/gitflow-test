@@ -19,8 +19,6 @@ jobs:
         uses: jessicalostinspace/github-action-get-regex-branch@v1.0.8
         with:
           regex-string: 'release-' 
-      - name: output semvar
-        run: echo "Semvar is ${{ 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
