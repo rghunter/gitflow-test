@@ -18,5 +18,5 @@ jobs:
         with:
           regex-string: 'release-' 
       - name: output semvar
-        run: echo "Semvar is ${{ steps.extract-semvar.outputs
+        run: echo "Semvar is ${{ steps.extract-semvar.outputs.last-semver }}"
 
