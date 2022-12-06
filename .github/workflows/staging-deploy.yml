@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-deploy-backend:
-    environment: dev 
+    environment: staging 
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
