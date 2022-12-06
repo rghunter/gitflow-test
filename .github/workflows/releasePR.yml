@@ -24,6 +24,6 @@ jobs:
           regex-string: 'release-v'
 
       - name: create pull request
-        run: gh pr create -B production -H ${GITHUB_REF} -t "Release ${{steps.extract-semvar.outputs.last-semver}}" -b "# Release Notes:"
+        run: gh pr create -B production -H ${GITHUB_REF} -t "Release ${{steps.extract-semvar.outputs.last-semver}}" -F ./github/workflows/release-notes-template.md
         env:
           GH_TOKEN: ${{ github.token }}
