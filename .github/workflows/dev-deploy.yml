@@ -22,3 +22,9 @@ jobs:
 
       - name: display semvar
         run: echo ${{steps.extract-semvar.outputs.last-semver}}
+
+      - name: display run number
+        run: echo $GITHUB_RUN_NUMBER	
+
+      - name: tag the build
+        run: git tag v${{steps.extract-semvar.outputs.last-semver}}-dev$GITHUB_RUN_NUMBER && git push origin --tags
