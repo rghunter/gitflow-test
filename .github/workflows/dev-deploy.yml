@@ -24,7 +24,7 @@ jobs:
         run: echo "VERSION_TAG=v${{steps.extract-semvar.outputs.last-semver}}-dev$GITHUB_RUN_NUMBER"
 
       - name: Tag the build
-        run: git tag ${{ env.VERSION_TAG }} 
+        run: git tag $VERSION_TAG
 
       - name: Push the Tags
         run: git push origin --tags
