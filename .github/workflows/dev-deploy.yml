@@ -21,10 +21,10 @@ jobs:
           regex-string: 'release-v'
 
       - name: Compute the tag
-        run: echo "VERSION_TAG=v${{steps.extract-semvar.outputs.last-semver}}-dev$GITHUB_RUN_NUMBER"
+        run: echo "VERSION_TAG=v${{steps.extract-semvar.outputs.last-semver}}-dev$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 
       - name: Tag the build
-        run: git tag ${{ VERSION_TAG }}
+        run: git tag ${{ env.VERSION_TAG }}
 
       - name: Push the Tags
         run: git push origin --tags
