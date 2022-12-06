@@ -31,7 +31,7 @@ jobs:
           body: "${{ github.event.head_commit.message }}"
 
       - name: Create PR to merge production back to main
-        run: gh pr create -B main -H production -t "Mergeback" -b "Automerge production to main"
+        run: gh pr create -B main -H production -t "Mergeback Release v{{steps.extract-semvar.outputs.last-semver}}" -b "Automerge production to main"
         env:
           GH_TOKEN: ${{ github.token }}
 
